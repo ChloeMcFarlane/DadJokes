@@ -1,3 +1,7 @@
+// File: app/(tabs)/_layout.tsx
+// Author: (cmcfar)/cmcfar@bu.edu
+// Description: This file defines the tab navigation layout for the dadjokes app.
+
 import React from 'react';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Link, Tabs } from 'expo-router';
@@ -48,9 +52,16 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="jokes_list"
         options={{
-          title: 'Tab Two',
+          title: 'Feed',
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="add_joke"
+        options={{
+          title: 'Add Joke',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />

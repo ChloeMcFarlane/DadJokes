@@ -16,12 +16,12 @@ export const styles = StyleSheet.create({
       flex: 1,
       paddingHorizontal: 20,
       width: '100%',
-      backgroundColor: 'white',
+      backgroundColor: '#F5F5F5',
       borderRadius: 10,
       padding: 10,
     },
     card: {
-      backgroundColor: '#f9f9f9',
+      backgroundColor: '#333',
       padding: 15,
       marginBottom: 10,
       borderRadius: 8,
@@ -34,12 +34,27 @@ export const styles = StyleSheet.create({
     },
     jokeText: {
       fontSize: 18,
-      marginBottom: 5,
+      color: '#F5F5F5',
     },
+    jokeCont:{
+      fontSize: 14,
+      marginBottom: 5,
+      color: '#F5F5F5',
+    }, 
+    jokeTextCard:{
+      fontSize: 18,
+      color: '#F5F5F5',
+    },
+    jokeContCard:{
+      fontSize: 14,
+      marginBottom: 5,
+      color: '#f5f5f5',
+    }, 
     img:{
-      width: 200,
+      width: 250,
       height: 200,
       borderRadius: 10,
+      paddingTop: 10,
       justifyContent: 'center',
       alignItems: 'center',
       overflow: 'hidden',
@@ -74,4 +89,5 @@ export const styles = StyleSheet.create({
       color: '#721c24',
       fontSize: 14,
     },
+    
   });

@@ -76,8 +76,8 @@ const handleRefresh = async () => {
         </View>
       ) : null}
           <View style={styles.inputContainer}>
-            <TextInput style={styles.input} placeholder="Contributor" value={postCont} onChangeText={setPostCont}/>
             <TextInput style={styles.input} placeholder="Joke" value={postBody} onChangeText={setPostBody}/>
+            <TextInput style={styles.input} placeholder="Contributor" value={postCont} onChangeText={setPostCont}/>
             <Button title={isPosting ? "Posting..." : "Create Post"} 
             onPress={addPost} 
             disabled={isPosting}/>

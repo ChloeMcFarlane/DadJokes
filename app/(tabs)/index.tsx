@@ -83,6 +83,7 @@ const handleRefresh = async () => {
       <View style={styles.listContainer}>
             <View style={styles.card}>
               <Text style={styles.jokeText}>{joke.text}</Text>
+              <Text style={styles.jokeCont}>{joke.contributor}</Text>
               <Image style={styles.img}source={{uri: picture.image_url}}/>
             </View>
       </View>

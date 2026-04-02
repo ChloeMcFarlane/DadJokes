@@ -4,6 +4,8 @@
 
 import React from 'react';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
+
 import { Link, Tabs } from 'expo-router';
 import { Pressable } from 'react-native';
 
@@ -16,7 +18,10 @@ function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>['name'];
   color: string;
 }) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
+  return (
+    <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />,
+    <FontAwesome5 size={28} style={{ marginBottom: -3 }} {...props} />
+  )
 }
 
 export default function TabLayout() {
@@ -34,7 +39,7 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'Jokes',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
           headerRight: () => (
             <Link href="/modal" asChild>
               <Pressable>
@@ -55,14 +60,14 @@ export default function TabLayout() {
         name="jokes_list"
         options={{
           title: 'Feed',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="globe" color={color} />,
         }}
       />
       <Tabs.Screen
         name="add_joke"
         options={{
           title: 'Post',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="plus" color={color} />,
         }}
       />
     </Tabs>

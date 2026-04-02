@@ -78,7 +78,8 @@ const handleRefresh = async () => {
             onRefresh={handleRefresh}
           renderItem={({ item }) => (
             <View style={styles.card}>
-              <Text style={styles.jokeText}>{item.text}</Text>
+              <Text style={styles.jokeTextCard}>{item.text}</Text>
+              <Text style={styles.jokeCont}>{item.contributor}</Text>
             </View>
           )}
         />

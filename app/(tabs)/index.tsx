@@ -2,34 +2,90 @@
 // Author: (cmcfar)/cmcfar@bu.edu
 // Description: This file defines the default home tab screen for the dadjokes app.
 
-import { StyleSheet } from 'react-native';
+// Self-imports
+import React, { useState, useEffect } from 'react';
+import { StatusBar, View, Image, Text, ActivityIndicator, TextInput, Button } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { styles } from '../../assets/my_styles';
 
 import EditScreenInfo from '@/components/EditScreenInfo';
-import { Text, View } from '@/components/Themed';
+import { Separators } from 'react-native/types_generated/index';
 
-export default function TabOneScreen() {
+
+
+
+export default function IndexScreen() {
+  // Definitions
+const [isLoading, setIsLoading] = useState(true);
+const [refreshing, setRefreshing] = useState(false);
+const [joke, setJoke] = useState([]);
+const [picture, setPicture] = useState([]);
+const [error, setError] = useState(''); 
+const [postTitle, setPostTitle] = useState('');
+const [postBody, setPostBody] = useState('');
+
+// data
+const fetchData = async (limit = 10) => {
+  try{
+    // Fetch joke
+    const response = await fetch(
+      `http://10.239.28.77:8000/dadjokes/api/random`
+    );
+    const data = await response.json();
+    setJoke(data);
+
+    // Fetch picture
+    const picResponse = await fetch(
+      `http://10.239.28.77:8000/dadjokes/api/random_picture`
+    );
+    const picData = await picResponse.json();
+    setPicture(picData);
+
+    setIsLoading(false);
+    setError('')
+  }catch(error){
+    console.error('Error fetching posts:', error);
+    setIsLoading(false);
+    setError('Failed to load posts. Please try again later.');
+  }
+};
+
+// useEffect for fetching data on component mount
+useEffect(() => {
+  fetchData();
+}, []);
+
+// Loading state
+if (isLoading) {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
-    </View>
-  );
+      <SafeAreaView style={styles.loadingContainer}>
+          <ActivityIndicator size="large" color="#fabaad" />
+          <Text> Loading.... </Text>
+      </SafeAreaView>
+  )
+
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
-});
+// Refresh
+const handleRefresh = async () => {
+  setRefreshing(true);
+  await fetchData(20)
+  setRefreshing(false);
+}
+
+  return (
+    <SafeAreaView style={styles.container}>
+      {error ? (
+        <View style={styles.errorContainer}>
+          <Text style={styles.errorText}>{error}</Text>
+        </View>
+      ) : null}
+      <View style={styles.listContainer}>
+            <View style={styles.card}>
+              <Text style={styles.jokeText}>{joke.text}</Text>
+              <Image style={styles.img}source={{uri: picture.image_url}}/>
+            </View>
+      </View>
+    </SafeAreaView>
+  );
+}

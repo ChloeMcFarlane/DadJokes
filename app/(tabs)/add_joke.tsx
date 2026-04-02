@@ -41,6 +41,7 @@ const addPost = async () => {
     setPostCont('');
     setPostBody('');
     setIsPosting(false);
+    
   } catch (error){
     console.error('Error creating post:', error);
     setIsPosting(false);

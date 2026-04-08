@@ -9,7 +9,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { styles } from '../../assets/my_styles';
 
 import EditScreenInfo from '@/components/EditScreenInfo';
-import { Separators } from 'react-native/types_generated/index';
 
 
 
